@@ -8,7 +8,7 @@
 }
 
 .preload {
-    visibility: none;
+    visibility: hidden;
 }
 
 .icon {
