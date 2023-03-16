@@ -1,0 +1,213 @@
+.party_list {
+    width: 550px;
+    display: grid;
+    grid-template-columns: 64px auto 48px 48px 48px;
+    grid-template-rows: repeat(8, 1fr);
+    gap: 10px 10px;
+    margin-bottom: 40px;
+}
+
+.icon {
+    width: 64px;
+    height: 64px;
+    z-index: 1;
+}
+
+.mark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 64px;
+    height: 64px;
+    z-index: 2;
+}
+
+.party {
+    position: relative;
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-template-columns: subgrid;
+}
+
+.tank, .healer, .dps {
+    font-family: "Meiryo UI", "Tahoma", serif;
+    font-size: 2rem;
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: auto;
+    grid-row-end: auto;
+    justify-self: left;
+    align-self: center;
+}
+
+.debuff {
+    grid-column-start: auto;
+    grid-column-end: auto;
+    grid-row-start: auto;
+    grid-row-end: auto;
+    justify-self: center;
+    align-self: center;
+}
+
+.near {
+    content: url("https://xivapi.com/i/015000/015141_hr1.png");
+}
+
+.distant {
+    content: url("https://xivapi.com/i/015000/015142_hr1.png");
+}
+
+.first {
+    content: url("https://xivapi.com/i/015000/015401_hr1.png");
+}
+
+.second {
+    content: url("https://xivapi.com/i/015000/015402_hr1.png");
+}
+
+.dyn1 {
+    content: url("https://xivapi.com/i/019000/019657_hr1.png");
+}
+
+.dyn2 {
+    content: url("https://xivapi.com/i/019000/019658_hr1.png");
+}
+
+.dyn3 {
+    content: url("https://xivapi.com/i/019000/019659_hr1.png");
+}
+
+.gnb {
+    content: url("https://xivapi.com/cj/companion/gunbreaker.png");
+}
+
+.drk {
+    content: url("https://xivapi.com/cj/companion/darkknight.png");
+}
+
+.whm {
+    content: url("https://xivapi.com/cj/companion/whitemage.png");
+}
+
+.sge {
+    content: url("https://xivapi.com/cj/companion/sage.png");
+}
+
+.nin {
+    content: url("https://xivapi.com/cj/companion/ninja.png");
+}
+
+.mnk {
+    content: url("https://xivapi.com/cj/companion/monk.png");
+}
+
+.brd {
+    content: url("https://xivapi.com/cj/companion/bard.png");
+}
+
+.rdm {
+    content: url("https://xivapi.com/cj/companion/redmage.png");
+}
+
+.attack1 {
+    content: url("https://xivapi.com/i/061000/061201_hr1.png");
+}
+
+.attack2 {
+    content: url("https://xivapi.com/i/061000/061202_hr1.png");
+}
+
+.attack3 {
+    content: url("https://xivapi.com/i/061000/061203_hr1.png");
+}
+
+.attack4 {
+    content: url("https://xivapi.com/i/061000/061204_hr1.png");
+}
+
+.attack5 {
+    content: url("https://xivapi.com/i/061000/061205_hr1.png");
+}
+
+.attack6 {
+    content: url("https://xivapi.com/i/061000/061206_hr1.png");
+}
+
+.attack7 {
+    content: url("https://xivapi.com/i/061000/061207_hr1.png");
+}
+
+.attack8 {
+    content: url("https://xivapi.com/i/061000/061208_hr1.png");
+}
+
+.bind1 {
+    content: url("https://xivapi.com/i/061000/061211_hr1.png");
+}
+
+.bind2 {
+    content: url("https://xivapi.com/i/061000/061212_hr1.png");
+}
+
+.bind3 {
+    content: url("https://xivapi.com/i/061000/061213_hr1.png");
+}
+
+.bind4 {
+    content: url("https://xivapi.com/i/061000/061214_hr1.png");
+}
+
+.bind5 {
+    content: url("https://xivapi.com/i/061000/061215_hr1.png");
+}
+
+.bind6 {
+    content: url("https://xivapi.com/i/061000/061216_hr1.png");
+}
+
+.bind7 {
+    content: url("https://xivapi.com/i/061000/061217_hr1.png");
+}
+
+.bind8 {
+    content: url("https://xivapi.com/i/061000/061218_hr1.png");
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-family: "Meiryo UI", "Tahoma", serif;
+    padding: 0;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+
+    background-color: #3e68ff;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.18);
+
+    padding: 0.25em 0.75em;
+    min-width: 10ch;
+    min-height: 44px;
+
+    text-align: center;
+    line-height: 1.1;
+
+    transition: 220ms all ease-in-out;
+}
+
+button.button:hover, button.button:active {
+    background-color: #2d57ee; 
+}
+
+button.button:focus {
+    background-color: #1c46dd;
+}
