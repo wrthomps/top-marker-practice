@@ -7,6 +7,10 @@
     margin-bottom: 40px;
 }
 
+.preload {
+    visibility: none;
+}
+
 .icon {
     width: 64px;
     height: 64px;
