@@ -1,9 +1,9 @@
 .party_list {
-    width: min(850px, 99%);
+    width: min(1200px, 99%);
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: repeat(8, 1fr);
-    gap: 5px 0px;
+    grid-template-rows: repeat(8, minmax(48px, 1fr));
+    gap: 5px 6px;
     margin-bottom: 40px;
     margin-left: 10px;
     justify-content: left;
@@ -22,9 +22,9 @@
     position: relative;
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: min(10%, 64px) max(20%, 300px) min(10%, 32px) min(10%, 32px) min(10%, 32px) min(10%, 32px) min(10%, 32px);
+    grid-template-columns: 48px max(20%, 300px) min(10%, 32px) min(10%, 32px) min(10%, 32px) min(10%, 32px) min(10%, 32px);
     grid-auto-columns: 48px;
-    gap: 0px 10px;
+    gap: 0px 6px;
 }
 
 .preload {
@@ -34,7 +34,7 @@
 }
 
 .icon_container {
-    width: min(max(48px, 100%), 64px);
+    width: min(max(48px, 100%), 48px);
     position: relative;
     aspect-ratio: 1/1;
     grid-row: 1;
@@ -44,7 +44,7 @@
 }
 
 .mark {
-    width: min(max(48px, 100%), 64px);
+    width: min(max(48px, 100%), 48px);
     aspect-ratio: 1/1;
     position: absolute;
     z-index: 2;
@@ -73,7 +73,8 @@
 }
 
 .debuff {
-    width: 36px;
+    max-width: 36px;
+    max-height: 44px;
     grid-column-start: auto;
     grid-column-end: auto;
     grid-row-start: 1;
