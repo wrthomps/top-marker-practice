@@ -223,9 +223,9 @@ for (var i = 1; i < 9; i++) {
 }
 
 window.addEventListener("keydown", (event) => {
-    if (event.code === "F1") {
+    if (event.code === "F1" || event.code === "Digit1") {
         markNextAttack("party" + moParty);
-    } else if (event.code === "F2") {
+    } else if (event.code === "F2" || event.code === "Digit2") {
         markNextBind("party" + moParty);
     }
 });

@@ -213,10 +213,10 @@ for (var i = 1; i < 9; i++) {
     _loop_1();
 }
 window.addEventListener("keydown", function (event) {
-    if (event.code === "F1") {
+    if (event.code === "F1" || event.code === "Digit1") {
         markNextAttack("party" + moParty);
     }
-    else if (event.code === "F2") {
+    else if (event.code === "F2" || event.code === "Digit2") {
         markNextBind("party" + moParty);
     }
 });
