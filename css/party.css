@@ -1,39 +1,64 @@
 .party_list {
-    width: 550px;
+    width: min(850px, 99%);
     display: grid;
-    grid-template-columns: 64px auto 48px 48px 48px;
+    grid-template-columns: auto;
     grid-template-rows: repeat(8, 1fr);
-    gap: 10px 10px;
+    gap: 5px 0px;
     margin-bottom: 40px;
+    margin-left: 10px;
+    justify-content: left;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    justify-items: center;
+    justify-self: center;
+}
+
+.party {
+    width: min(850px, 99%);
+    position: relative;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: min(10%, 64px) max(20%, 300px) min(10%, 32px) min(10%, 32px) min(10%, 32px) min(10%, 32px) min(10%, 32px);
+    grid-auto-columns: 48px;
+    gap: 0px 10px;
 }
 
 .preload {
     visibility: hidden;
+    width: 0px;
+    height: 0px;
 }
 
-.icon {
-    width: 64px;
-    height: 64px;
-    z-index: 1;
+.icon_container {
+    width: min(max(48px, 100%), 64px);
+    position: relative;
+    aspect-ratio: 1/1;
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+    align-self: center;
 }
 
 .mark {
+    width: min(max(48px, 100%), 64px);
+    aspect-ratio: 1/1;
     position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 64px;
-    height: 64px;
     z-index: 2;
 }
 
-.party {
-    position: relative;
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 6;
-    grid-template-columns: subgrid;
+.icon {
+    width: min(max(48px, 100%), 64px);
+    position: absolute;
+    aspect-ratio: 1/1;
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+    align-self: center;
+    z-index: 1;
 }
 
 .tank, .healer, .dps {
@@ -41,17 +66,17 @@
     font-size: 2rem;
     grid-column-start: 2;
     grid-column-end: 2;
-    grid-row-start: auto;
-    grid-row-end: auto;
+    grid-row-start: 1;
+    grid-row-end: 1;
     justify-self: left;
     align-self: center;
 }
 
 .debuff {
+    width: 36px;
     grid-column-start: auto;
     grid-column-end: auto;
-    grid-row-start: auto;
-    grid-row-end: auto;
+    grid-row-start: 1;
     justify-self: center;
     align-self: center;
 }
@@ -82,38 +107,6 @@
 
 .dyn3 {
     content: url("https://xivapi.com/i/019000/019659_hr1.png");
-}
-
-.gnb {
-    content: url("https://xivapi.com/cj/companion/gunbreaker.png");
-}
-
-.drk {
-    content: url("https://xivapi.com/cj/companion/darkknight.png");
-}
-
-.whm {
-    content: url("https://xivapi.com/cj/companion/whitemage.png");
-}
-
-.sge {
-    content: url("https://xivapi.com/cj/companion/sage.png");
-}
-
-.nin {
-    content: url("https://xivapi.com/cj/companion/ninja.png");
-}
-
-.mnk {
-    content: url("https://xivapi.com/cj/companion/monk.png");
-}
-
-.brd {
-    content: url("https://xivapi.com/cj/companion/bard.png");
-}
-
-.rdm {
-    content: url("https://xivapi.com/cj/companion/redmage.png");
 }
 
 .attack1 {
@@ -200,6 +193,7 @@ button {
 
     padding: 0.25em 0.75em;
     min-width: 10ch;
+    max-width: 100%;
     min-height: 44px;
 
     text-align: center;
