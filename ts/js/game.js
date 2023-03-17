@@ -1,5 +1,12 @@
-function permute() {
+function permuteParty() {
     var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+    return permute(arr);
+}
+function permuteBuffs() {
+    var arr = ["missionary", "eprog", "holos", "panhaima", "asylum", "brother", "bvoice", "mballad", "mbarrier"];
+    return permute(arr);
+}
+function permute(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var temp = arr[i];
@@ -37,86 +44,189 @@ function clearMark(p) {
     Array.prototype.forEach.call(oldMark, function (om) { return om.remove(); });
 }
 function assignSigmaDyn1() {
-    var shuffle = permute();
+    var shuffle = permuteParty();
     var j = 1;
     shuffle.forEach(function (i) {
         if (j < 7) {
             var p = document.getElementById("party" + i);
-            var newDebuff = document.createElement("div");
-            newDebuff.classList.add("debuff", "dyn1");
-            p.appendChild(newDebuff);
+            var newDyn = document.createElement("div");
+            newDyn.classList.add("debuff", "dyn1");
+            p.appendChild(newDyn);
             j++;
         }
     });
 }
 function assignOmega1Dyn() {
-    var shuffle = permute();
+    var shuffle = permuteParty();
     var j = 1;
     shuffle.forEach(function (i) {
         if (j < 5) {
             var p = document.getElementById("party" + i);
-            var newDebuff = document.createElement("div");
-            newDebuff.classList.add("debuff", "dyn1");
-            p.appendChild(newDebuff);
+            var newDyn = document.createElement("div");
+            newDyn.classList.add("debuff", "dyn1");
+            p.appendChild(newDyn);
         }
         else {
             var p = document.getElementById("party" + i);
-            var newDebuff = document.createElement("div");
-            newDebuff.classList.add("debuff", "dyn2");
-            p.appendChild(newDebuff);
+            var newDyn = document.createElement("div");
+            newDyn.classList.add("debuff", "dyn2");
+            p.appendChild(newDyn);
         }
         j++;
     });
 }
 function assignSigmaHelloWorld() {
-    var shuffle = permute();
+    var shuffle = permuteParty();
     var hw = ["", "near", "distant"];
     var j = 1;
     shuffle.forEach(function (i) {
         if (j < 3) {
             var p = document.getElementById("party" + i);
-            var newDebuff = document.createElement("div");
-            newDebuff.classList.add("debuff", hw[j]);
-            p.appendChild(newDebuff);
+            var newHw = document.createElement("div");
+            newHw.classList.add("debuff", hw[j]);
+            p.appendChild(newHw);
             j++;
         }
     });
 }
 function assignOmega1HelloWorld() {
-    var shuffle = permute();
+    var shuffle = permuteParty();
     var hw = ["", "near", "near", "distant", "distant"];
     var il = ["", "first", "second", "first", "second"];
     var j = 1;
     shuffle.forEach(function (i) {
         if (j < 5) {
             var p = document.getElementById("party" + i);
-            var newDebuff = document.createElement("div");
-            newDebuff.classList.add("debuff", hw[j], il[j]);
-            p.appendChild(newDebuff);
+            var newIl = document.createElement("div");
+            newIl.classList.add("debuff", il[j]);
+            var newHw = document.createElement("div");
+            newHw.classList.add("debuff", hw[j]);
+            p.appendChild(newIl);
+            p.appendChild(newHw);
             j++;
         }
     });
 }
 function assignOmega2Debuffs() {
-    var shuffle = permute();
+    var shuffle = permuteParty();
     var hw = ["", "", "", "near", "distant"];
     var j = 1;
     shuffle.forEach(function (i) {
         var p = document.getElementById("party" + i);
-        var newDebuff = document.createElement("div");
-        newDebuff.classList.add("debuff");
         if (j < 3) {
-            newDebuff.classList.add("dyn3");
+            var newDyn = document.createElement("div");
+            newDyn.classList.add("debuff", "dyn3");
+            p.appendChild(newDyn);
         }
         else if (j < 5) {
-            newDebuff.classList.add("dyn2", "second", hw[j]);
+            var newDyn = document.createElement("div");
+            var newIl = document.createElement("div");
+            var newHw = document.createElement("div");
+            newDyn.classList.add("debuff", "dyn2");
+            newIl.classList.add("debuff", "second");
+            newHw.classList.add("debuff", hw[j]);
+            p.appendChild(newDyn);
+            p.appendChild(newIl);
+            p.appendChild(newHw);
         }
         else {
-            newDebuff.classList.add("dyn2");
+            var newDyn = document.createElement("div");
+            newDyn.classList.add("debuff", "dyn2");
+            p.appendChild(newDyn);
         }
-        p.appendChild(newDebuff);
         j++;
     });
+}
+function emptyBuffSlots(p) {
+    var children = p.childNodes;
+    var slotsFilled = 0;
+    children.forEach(function (node) {
+        if (node.classList.contains("debuff")) {
+            slotsFilled++;
+        }
+    });
+    return 5 - slotsFilled;
+}
+function fillRandomBuffs() {
+    var shuffle = permuteBuffs();
+    for (var i = 1; i < 9; i++) {
+        var isMedicated = false;
+        var buffIndex = 0;
+        var p = document.getElementById("party" + i);
+        var emptySlots = emptyBuffSlots(p);
+        for (var j = 0; j < emptySlots; j++) {
+            var newBuff = document.createElement("div");
+            newBuff.classList.add("debuff");
+            var r = Math.random();
+            if (r < 0.07 && !isMedicated) {
+                newBuff.classList.add("medicated");
+                isMedicated = true;
+            }
+            else if (r < 0.3) {
+                newBuff.classList.add(getRandomClassBuff(p));
+            }
+            else {
+                newBuff.classList.add(shuffle[buffIndex]);
+                buffIndex++;
+            }
+            p.appendChild(newBuff);
+        }
+    }
+}
+function getRandomClassBuff(p) {
+    var cls = p.classList[1];
+    var buffs = [];
+    switch (cls) {
+        case "drk": {
+            buffs = ["sprint", "rampart", "living", "tbn", "oblation"];
+            break;
+        }
+        case "gnb": {
+            buffs = ["sprint", "rampart", "bolide", "shell", "nomercy"];
+            break;
+        }
+        case "whm": {
+            buffs = ["sprint", "lucid", "temp", "thin", "presence"];
+            break;
+        }
+        case "sge": {
+            buffs = ["sprint", "lucid", "swift", "eukrasia", "zoe"];
+            break;
+        }
+        case "nin": {
+            buffs = ["sprint", "length", "suiton", "kassatsu", "tcj"];
+            break;
+        }
+        case "mnk": {
+            buffs = ["sprint", "length", "bloodbath", "ridfire", "leaden"];
+            break;
+        }
+        case "brd": {
+            buffs = ["sprint", "length", "blast", "straight", "raging"];
+            break;
+        }
+        case "rdm": {
+            buffs = ["sprint", "accel", "verstone", "verfire", "manafic"];
+            break;
+        }
+    }
+    var existingBuffs = p.getElementsByClassName("debuff");
+    if (existingBuffs.length === 5) {
+        return null; // We shouldn't ever call this so let's just crash
+    }
+    var candidate = buffs[Math.floor(Math.random() * 5)];
+    while (hasClassName(existingBuffs, candidate)) {
+        candidate = buffs[Math.floor(Math.random() * 5)]; // There's a better way to do this but I cba to do it
+    }
+    return candidate;
+}
+function hasClassName(els, name) {
+    for (var i = 0; i < els.length; i++) {
+        if (els[i].classList.contains(name)) {
+            return true;
+        }
+    }
+    return false;
 }
 function markNextAttack(p) {
     clearMark(p);
@@ -178,6 +288,7 @@ sigButton.addEventListener("click", function (event) {
     clearDebuffs();
     assignSigmaDyn1();
     assignSigmaHelloWorld();
+    fillRandomBuffs();
 });
 var om1Button = document.querySelector("#omega1");
 om1Button.addEventListener("click", function (event) {
@@ -185,11 +296,13 @@ om1Button.addEventListener("click", function (event) {
     clearDebuffs();
     assignOmega1Dyn();
     assignOmega1HelloWorld();
+    fillRandomBuffs();
 });
 var om2Button = document.querySelector("#omega2");
 om2Button.addEventListener("click", function (event) {
     clearAllMarks();
     clearDebuffs();
     assignOmega2Debuffs();
+    fillRandomBuffs();
 });
 //# sourceMappingURL=game.js.map

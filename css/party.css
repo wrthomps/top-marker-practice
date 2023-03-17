@@ -12,7 +12,7 @@
 .controls {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
+    width: min(850px, 100%);
     justify-items: center;
     justify-self: center;
 }
@@ -108,6 +108,184 @@
 .dyn3 {
     content: url("https://xivapi.com/i/019000/019659_hr1.png");
 }
+
+/* Group buffs */
+
+.missionary {
+    content: url("https://xivapi.com/i/013000/013122_hr1.png");
+} 
+
+.eprog {
+    content: url("https://xivapi.com/i/012000/012954_hr1.png");
+}
+
+.holos {
+    content: url("https://xivapi.com/i/012000/012971_hr1.png");
+}
+
+.panhaima {
+    content: url("https://xivapi.com/i/012000/012959_hr1.png");
+}
+
+.asylum {
+    content: url("https://xivapi.com/i/012000/012629_hr1.png");
+}
+
+.brother {
+    content: url("https://xivapi.com/i/012000/012532_hr1.png");
+}
+
+.bvoice {
+    content: url("https://xivapi.com/i/012000/012601_hr1.png");
+}
+
+.mballad {
+    content: url("https://xivapi.com/i/012000/012603_hr1.png");
+}
+
+.mbarrier {
+    content: url("https://xivapi.com/i/013000/013408_hr1.png");
+}
+
+/* General/role buffs */
+
+.medicated {
+    content: url("https://xivapi.com/i/016000/016203_hr1.png");
+}
+
+.sprint {
+    content: url("https://xivapi.com/i/010000/010101_hr1.png");
+}
+
+.length {
+    content: url("https://xivapi.com/i/013000/013915_hr1.png");
+}
+
+.rampart {
+    content: url("https://xivapi.com/i/013000/013911_hr1.png");
+}
+
+.bloodbath {
+    content: url("https://xivapi.com/i/013000/013913_hr1.png");
+}
+
+.lucid {
+    content: url("https://xivapi.com/i/013000/013909_hr1.png");
+}
+
+.swift {
+    content: url("https://xivapi.com/i/010000/010454_hr1.png");
+}
+
+/* MNK buffs */
+
+.ridfire {
+    content: url("https://xivapi.com/i/012000/012528_hr1.png");
+}
+
+.leaden {
+    content: url("https://xivapi.com/i/012000/012533_hr1.png");
+}
+
+/* BRD buffs */
+
+.blast {
+    content: url("https://xivapi.com/i/012000/012621_hr1.png");
+}
+
+.straight {
+    content: url("https://xivapi.com/i/010000/010365_hr1.png")
+}
+
+.raging {
+    content: url("https://xivapi.com/i/010000/010354_hr1.png");
+}
+
+/* WHM buffs */
+
+.temp {
+    content: url("https://xivapi.com/i/012000/012633_hr1.png");
+}
+
+.thin {
+    content: url("https://xivapi.com/i/012000/012631_hr1.png");
+}
+
+.presence {
+    content: url("https://xivapi.com/i/012000/012627_hr1.png");
+}
+
+/* NIN buffs */
+
+.suiton {
+    content: url("https://xivapi.com/i/012000/012906_hr1.png");
+}
+
+.kassatsu {
+    content: url("https://xivapi.com/i/012000/012902_hr1.png");
+}
+
+.tcj {
+    content: url("https://xivapi.com/i/012000/012911_hr1.png");
+}
+
+/* SGE buffs */
+
+.eukrasia {
+    content: url("https://xivapi.com/i/012000/012953_hr1.png");
+}
+
+.zoe {
+    content: url("https://xivapi.com/i/012000/012957_hr1.png");
+}
+
+/* DRK buffs */
+
+.living {
+    content: url("https://xivapi.com/i/013000/013115_hr1.png");
+}
+
+.tbn {
+    content: url("https://xivapi.com/i/013000/013118_hr1.png");
+}
+
+.oblation {
+    content: url("https://xivapi.com/i/013000/013123_hr1.png");
+}
+
+/* RDM buffs */
+
+.accel {
+    content: url("https://xivapi.com/i/013000/013405_hr1.png");
+}
+
+.verfire {
+    content: url("https://xivapi.com/i/013000/013402_hr1.png");
+}
+
+.verstone {
+    content: url("https://xivapi.com/i/013000/013403_hr1.png");
+}
+
+.manafic {
+    content: url("https://xivapi.com/i/013000/013407_hr1.png");
+}
+
+/* GNB buffs */
+
+.bolide {
+    content: url("https://xivapi.com/i/013000/013606_hr1.png");
+}
+
+.shell {
+    content: url("https://xivapi.com/i/013000/013602_hr1.png");
+}
+
+.nomercy {
+    content: url("https://xivapi.com/i/013000/013601_hr1.png");
+}
+
+/* Marks */
 
 .attack1 {
     content: url("https://xivapi.com/i/061000/061201_hr1.png");
