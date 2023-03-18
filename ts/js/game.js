@@ -495,7 +495,7 @@ sigButton.addEventListener("click", function (event) {
         validateSigmaComplex : validateSigmaSimple;
     start = Date.now();
     var r = document.getElementById("results");
-    r.textContent = "";
+    r.textContent = "-.---s";
     clearAllMarks();
     clearDebuffs();
     assignSigmaDyn1();
@@ -508,7 +508,7 @@ om1Button.addEventListener("click", function (event) {
         validateOmega1Complex : validateOmega1Simple;
     start = Date.now();
     var r = document.getElementById("results");
-    r.textContent = "";
+    r.textContent = "-.---s";
     clearAllMarks();
     clearDebuffs();
     assignOmega1Dyn();
@@ -521,7 +521,7 @@ om2Button.addEventListener("click", function (event) {
         validateOmega2Complex : validateOmega2Simple;
     start = Date.now();
     var r = document.getElementById("results");
-    r.textContent = "";
+    r.textContent = "-.---s";
     clearAllMarks();
     clearDebuffs();
     assignOmega2Debuffs();
