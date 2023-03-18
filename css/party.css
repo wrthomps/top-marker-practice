@@ -1,7 +1,7 @@
 .layout {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 565px 1fr;
     grid-template-rows: 1fr min(60px, 2fr) 6fr 3fr;
 }
 
@@ -9,6 +9,7 @@
     width: min(565px, 100%);
     grid-row: 3;
     grid-column: 2;
+    color: #222;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: repeat(8, minmax(48px, 1fr));
@@ -28,14 +29,18 @@
 }
 
 .options {
+    color: #222;
     grid-row: 3;
     grid-column :3;
 }
+
 .results {
     grid-row: 3;
     grid-column: 1;
     font-size: 4rem;
-    font-family: serif;
+    font-family: "Tahoma", serif;
+    font-weight: bold;
+    color: #222;
     justify-items: right;
     justify-self: right;
     margin: 30px;

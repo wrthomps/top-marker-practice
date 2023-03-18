@@ -234,6 +234,25 @@ function hasClassName(els, name) {
     }
     return false;
 }
+function validateSigmaSimple() {
+    for (var i = 1; i < 4; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(attacks[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("near") || debuffs[j].classList.contains("distant")) {
+                return false;
+            }
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    var r = document.getElementById("results");
+    r.textContent = ((end - start) / 1000) + "s";
+    return true;
+}
 function validateSigmaComplex() {
     for (var i = 1; i < 5; i++) {
         if (attacks[i] === "") {
@@ -259,6 +278,32 @@ function validateSigmaComplex() {
                 return false;
             }
             if (debuffs[j].classList.contains("dyn1")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    var r = document.getElementById("results");
+    r.textContent = ((end - start) / 1000) + "s";
+    return true;
+}
+function validateOmega1Simple() {
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(binds[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
                 foundDyn = true;
             }
         }
@@ -307,7 +352,33 @@ function validateOmega1Complex() {
     validationFunction = null;
     end = Date.now();
     var r = document.getElementById("results");
-    r.nodeValue = ((end - start) / 1000) + "s";
+    r.textContent = ((end - start) / 1000) + "s";
+    return true;
+}
+function validateOmega2Simple() {
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(binds[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn3")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    var r = document.getElementById("results");
+    r.textContent = ((end - start) / 1000) + "s";
     return true;
 }
 function validateOmega2Complex() {
@@ -345,7 +416,7 @@ function validateOmega2Complex() {
     validationFunction = null;
     end = Date.now();
     var r = document.getElementById("results");
-    r.nodeValue = ((end - start) / 1000) + "s";
+    r.textContent = ((end - start) / 1000) + "s";
     return true;
 }
 function markNextAttack(p, validate) {
@@ -420,7 +491,8 @@ window.addEventListener("keydown", function (event) {
 });
 var sigButton = document.querySelector("#sigma");
 sigButton.addEventListener("click", function (event) {
-    validationFunction = validateSigmaComplex;
+    validationFunction = document.querySelector("#sigma_rules").checked ?
+        validateSigmaComplex : validateSigmaSimple;
     start = Date.now();
     var r = document.getElementById("results");
     r.textContent = "";
@@ -432,7 +504,8 @@ sigButton.addEventListener("click", function (event) {
 });
 var om1Button = document.querySelector("#omega1");
 om1Button.addEventListener("click", function (event) {
-    validationFunction = validateOmega1Complex;
+    validationFunction = document.querySelector("#omega1_rules").checked ?
+        validateOmega1Complex : validateOmega1Simple;
     start = Date.now();
     var r = document.getElementById("results");
     r.textContent = "";
@@ -444,7 +517,8 @@ om1Button.addEventListener("click", function (event) {
 });
 var om2Button = document.querySelector("#omega2");
 om2Button.addEventListener("click", function (event) {
-    validationFunction = validateOmega2Complex;
+    validationFunction = document.querySelector("#omega2_rules").checked ?
+        validateOmega2Complex : validateOmega2Simple;
     start = Date.now();
     var r = document.getElementById("results");
     r.textContent = "";
