@@ -27,11 +27,11 @@ function clearDebuffs(): void {
 
 function clearAllMarks(): void {
     for (var i = 1; i < 9; i++) {
-        clearMark("party" + i);
+        clearMark("party" + i, (_e) => false);
     }
 }
 
-function clearMark(p: string): void {
+function clearMark(p: string, validate): void {
     for (var i = 0; i < attacks.length; i++) {
         if (p === attacks[i]) {
             attacks[i] = "";
@@ -47,6 +47,12 @@ function clearMark(p: string): void {
     const party = document.getElementById(p);
     const oldMark = party!.getElementsByClassName("mark");
     Array.prototype.forEach.call(oldMark, (om) => om.remove());
+    if (validate != null) {
+        let result = validate.call();
+        if (result) {
+            console.log(end - start + "ms");
+        }
+    }
 }
 
 function assignSigmaDyn1(): void {
@@ -330,7 +336,7 @@ function validateOmega2() {
 }
 
 function markNextAttack(p: string, validate) {
-    clearMark(p);
+    clearMark(p, (_e) => false);
     for (var i = 1; i < attacks.length; i++) {
         if (attacks[i] === "") {
             attacks[i] = p;
@@ -350,7 +356,7 @@ function markNextAttack(p: string, validate) {
 }
 
 function markNextBind(p, validate) {
-    clearMark(p);
+    clearMark(p, (_e) => false);
     for (var i = 1; i < binds.length; i++) {
         if (binds[i] === "") {
             binds[i] = p;
@@ -385,6 +391,8 @@ window.addEventListener("keydown", (event) => {
         markNextAttack("party" + moParty, validationFunction);
     } else if (event.code === "F2" || event.code === "Digit2") {
         markNextBind("party" + moParty, validationFunction);
+    } else if (event.code === "F3" || event.code === "Digit3") {
+        clearMark("party" + moParty, validationFunction);
     }
 });
 
