@@ -155,7 +155,7 @@ function emptyBuffSlots(p) {
     let children = p.childNodes;
     var slotsFilled = 0;
     children.forEach((node) => {
-        if (node.classList.contains("debuff")) {
+        if (node.classList && node.classList.contains("debuff")) {
             slotsFilled++;
         }
     })
@@ -224,7 +224,7 @@ function hasClassName(els, name) {
     return false;
 }
 
-function validateSigma() {
+function validateSigmaComplex() {
     for (var i = 1; i < 5; i++) {
         if (attacks[i] === "") {
             return false;
@@ -263,7 +263,7 @@ function validateSigma() {
     return true;
 }
 
-function validateOmega1() {
+function validateOmega1Complex() {
     for (var i = 1; i < 5; i++) {
         if (attacks[i] === "") {
             return false;
@@ -302,7 +302,7 @@ function validateOmega1() {
     return true;
 }
 
-function validateOmega2() {
+function validateOmega2Complex() {
     for (var i = 1; i < 5; i++) {
         if (attacks[i] === "") {
             return false;
@@ -404,7 +404,7 @@ window.addEventListener("keydown", (event) => {
 
 const sigButton = document.querySelector("#sigma");
 sigButton!.addEventListener("click", (event) => {
-    validationFunction = validateSigma;
+    validationFunction = validateSigmaComplex;
     start = Date.now();
     let r = document.getElementById("results");
     r.textContent = "";
@@ -417,7 +417,7 @@ sigButton!.addEventListener("click", (event) => {
 
 const om1Button = document.querySelector("#omega1");
 om1Button!.addEventListener("click", (event) => {
-    validationFunction = validateOmega1;
+    validationFunction = validateOmega1Complex;
     start = Date.now();
     let r = document.getElementById("results");
     r.textContent = "";
@@ -430,7 +430,7 @@ om1Button!.addEventListener("click", (event) => {
 
 const om2Button = document.querySelector("#omega2");
 om2Button!.addEventListener("click", (event) => {
-    validationFunction = validateOmega2;
+    validationFunction = validateOmega2Complex;
     start = Date.now();
     let r = document.getElementById("results");
     r.textContent = "";

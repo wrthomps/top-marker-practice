@@ -2,6 +2,8 @@
     <head>
         <title>TOP Marker Practice</title>
         <link rel="stylesheet" href="css/party.css">
+        <link rel="stylesheet" href="css/toggle.css">
+        <link rel="stylesheet" href="css/options.css">
 
         <!-- Prefetch all the icons we need
         <link rel="prefetch" href="https://xivapi.com/i/015000/015141_hr1.png" as="image">
@@ -68,23 +70,83 @@
         <link rel="prefetch" href="https://xivapi.com/i/013000/061218_hr1.png"> -->
     </head>
     <body>
-        <div class="controls">
-            <button class="button" id="sigma">Start Sigma</button>
-            <button class="button" id="omega1">Start Omega 1</button>
-            <button class="button" id="omega2">Start Omega 2</button>
+        <div class="layout">
+            <div class="controls">
+                <button class="button" id="sigma">Start Sigma</button>
+                <button class="button" id="omega1">Start Omega 1</button>
+                <button class="button" id="omega2">Start Omega 2</button>
+            </div>
+            <div class="party_list">
+                <div class="party drk" id="party1">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/darkknight.png" class="icon"></div>
+                    <div class="tank">Demanding Drk</div>
+                </div>
+                <div class="party gnb" id="party2">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/gunbreaker.png" class="icon"></div>
+                    <div class="tank">Gallant Gnb</div>
+                </div>
+                <div class="party whm" id="party3">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/whitemage.png" class="icon"></div>
+                    <div class="healer">Whimsical Whm</div>
+                </div>
+                <div class="party sge" id="party4">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/sage.png" class="icon"></div>
+                    <div class="healer">Sonorous Sge</div>
+                </div>
+                <div class="party nin" id="party5">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/ninja.png" class="icon"></div>
+                    <div class="dps">Neurotic Nin</div>
+                </div>
+                <div class="party mnk" id="party6">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/monk.png" class="icon"></div>
+                    <div class="dps">Maladroit Mnk</div>
+                </div>
+                <div class="party brd" id="party7">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/bard.png" class="icon"></div>
+                    <div class="dps">Baleful Brd</div>
+                </div>
+                <div class="party rdm" id="party8">
+                    <div class="icon_container"><img src="https://xivapi.com/cj/companion/redmage.png" class="icon"></div>
+                    <div class="dps">Rustic Rdm</div>
+                </div>
+            </div>
+            <div class="options">
+                <div class="btn-container">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                    <label class="switch btn-color-mode-switch">
+                        <input type="checkbox" name="color_mode" id="sigma_rules" value="1">
+                        <label for="color_mode" data-on="Complex" data-off="Simple" class="btn-color-mode-switch-inner"></label>
+                    </label>
+                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                </div>
+                <div class="rule_label">
+                    Sigma rules
+                </div>
+                <div class="btn-container">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                    <label class="switch btn-color-mode-switch">
+                        <input type="checkbox" name="color_mode" id="omega1_rules" value="1">
+                        <label for="color_mode" data-on="Complex" data-off="Simple" class="btn-color-mode-switch-inner"></label>
+                    </label>
+                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                </div>
+                <div class="rule_label">
+                    Omega 1 rules
+                </div>
+                <div class="btn-container">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                    <label class="switch btn-color-mode-switch">
+                        <input type="checkbox" name="color_mode" id="omega2_rules" value="1">
+                        <label for="color_mode" data-on="Complex" data-off="Simple" class="btn-color-mode-switch-inner"></label>
+                    </label>
+                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                </div>
+                <div class="rule_label">
+                    Omega 2 rules
+                </div>
+            </div>
+            <div class="results" id="results"></div>
         </div>
-        <div class="party_list">
-            <div class="party drk" id="party1"><div class="icon_container"><img src="https://xivapi.com/cj/companion/darkknight.png" class="icon"></div><div class="tank">Demanding Drk</div></div>
-            <div class="party gnb" id="party2"><div class="icon_container"><img src="https://xivapi.com/cj/companion/gunbreaker.png" class="icon"></div><div class="tank">Gallant Gnb</div></div>
-            <div class="party whm" id="party3"><div class="icon_container"><img src="https://xivapi.com/cj/companion/whitemage.png" class="icon"></div><div class="healer">Whimsical Whm</div></div>
-            <div class="party sge" id="party4"><div class="icon_container"><img src="https://xivapi.com/cj/companion/sage.png" class="icon"></div><div class="healer">Sonorous Sge</div></div>
-            <div class="party nin" id="party5"><div class="icon_container"><img src="https://xivapi.com/cj/companion/ninja.png" class="icon"></div><div class="dps">Neurotic Nin</div></div>
-            <div class="party mnk" id="party6"><div class="icon_container"><img src="https://xivapi.com/cj/companion/monk.png" class="icon"></div><div class="dps">Maladroit Mnk</div></div>
-            <div class="party brd" id="party7"><div class="icon_container"><img src="https://xivapi.com/cj/companion/bard.png" class="icon"></div><div class="dps">Baleful Brd</div></div>
-            <div class="party rdm" id="party8"><div class="icon_container"><img src="https://xivapi.com/cj/companion/redmage.png" class="icon"></div><div class="dps">Rustic Rdm</div></div>
-        </div>
-
-        <div class="results" id="results"></div>
 
         <div class="attack1 preload"></div>
         <div class="attack2 preload"></div>
