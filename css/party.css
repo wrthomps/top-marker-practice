@@ -337,18 +337,6 @@
     content: url("https://xivapi.com/i/061000/061205_hr1.png");
 }
 
-.attack6 {
-    content: url("https://xivapi.com/i/061000/061206_hr1.png");
-}
-
-.attack7 {
-    content: url("https://xivapi.com/i/061000/061207_hr1.png");
-}
-
-.attack8 {
-    content: url("https://xivapi.com/i/061000/061208_hr1.png");
-}
-
 .bind1 {
     content: url("https://xivapi.com/i/061000/061211_hr1.png");
 }
@@ -359,26 +347,6 @@
 
 .bind3 {
     content: url("https://xivapi.com/i/061000/061213_hr1.png");
-}
-
-.bind4 {
-    content: url("https://xivapi.com/i/061000/061214_hr1.png");
-}
-
-.bind5 {
-    content: url("https://xivapi.com/i/061000/061215_hr1.png");
-}
-
-.bind6 {
-    content: url("https://xivapi.com/i/061000/061216_hr1.png");
-}
-
-.bind7 {
-    content: url("https://xivapi.com/i/061000/061217_hr1.png");
-}
-
-.bind8 {
-    content: url("https://xivapi.com/i/061000/061218_hr1.png");
 }
 
 button {

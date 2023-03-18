@@ -468,8 +468,8 @@ function markNextBind(p, validate) {
     }
 }
 var moParty = 1;
-var attacks = ["", "", "", "", "", "", "", "", ""];
-var binds = ["", "", "", "", "", "", "", "", ""];
+var attacks = ["", "", "", "", "", ""];
+var binds = ["", "", "", ""];
 var validationFunction, start, end;
 var _loop_1 = function () {
     var j = i;
