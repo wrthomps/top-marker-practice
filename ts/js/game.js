@@ -420,9 +420,9 @@ function validateOmega2Complex() {
     return true;
 }
 function markNextAttack(p, validate) {
-    clearMark(p, function (_e) { return false; });
     var _loop_2 = function () {
         if (attacks[i] === "") {
+            clearMark(p, function (_e) { return false; });
             attacks[i] = p;
             var newMark_1 = document.createElement("div");
             newMark_1.classList.add("mark", "attack" + i);
@@ -444,9 +444,9 @@ function markNextAttack(p, validate) {
     }
 }
 function markNextBind(p, validate) {
-    clearMark(p, function (_e) { return false; });
     var _loop_3 = function () {
         if (binds[i] === "") {
+            clearMark(p, function (_e) { return false; });
             binds[i] = p;
             var newMark_2 = document.createElement("div");
             newMark_2.classList.add("mark", "bind" + i);
@@ -479,13 +479,13 @@ for (var i = 1; i < 9; i++) {
     _loop_1();
 }
 window.addEventListener("keydown", function (event) {
-    if (event.code === "F1" || event.code === "Digit1") {
+    if (event.code === "Digit1") {
         markNextAttack("party" + moParty, validationFunction);
     }
-    else if (event.code === "F2" || event.code === "Digit2") {
+    else if (event.code === "Digit2") {
         markNextBind("party" + moParty, validationFunction);
     }
-    else if (event.code === "F3" || event.code === "Digit3") {
+    else if (event.code === "Digit3") {
         clearMark("party" + moParty, validationFunction);
     }
 });
