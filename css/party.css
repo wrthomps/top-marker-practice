@@ -1,5 +1,5 @@
 .party_list {
-    width: min(850px, 100%);
+    width: min(565px, 100%);
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: repeat(8, minmax(48px, 1fr));
@@ -16,8 +16,17 @@
     margin: 30px;
 }
 
+.results {
+    width: min(565px, 100%);
+    height: min(300px, 20%);
+    font-size: 4rem;
+    font-family: serif;
+    justify-content: center;
+    justify-self: center;
+    align-content: center;
+}
 .party {
-    width: min(850px, 100%);
+    width: min(565px, 100%);
     position: relative;
     display: grid;
     grid-template-rows: auto;

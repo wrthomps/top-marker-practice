@@ -258,6 +258,8 @@ function validateSigma() {
     }
     validationFunction = null;
     end = Date.now();
+    let r = document.getElementById("results");
+    r.textContent = ((end - start) / 1000) + "s";
     return true;
 }
 
@@ -295,6 +297,8 @@ function validateOmega1() {
     }
     validationFunction = null;
     end = Date.now();
+    let r = document.getElementById("results");
+    r.nodeValue = ((end - start) / 1000) + "s";
     return true;
 }
 
@@ -332,6 +336,8 @@ function validateOmega2() {
     }
     validationFunction = null;
     end = Date.now();
+    let r = document.getElementById("results");
+    r.nodeValue = ((end - start) / 1000) + "s";
     return true;
 }
 
@@ -400,6 +406,8 @@ const sigButton = document.querySelector("#sigma");
 sigButton!.addEventListener("click", (event) => {
     validationFunction = validateSigma;
     start = Date.now();
+    let r = document.getElementById("results");
+    r.textContent = "";
     clearAllMarks();
     clearDebuffs();
     assignSigmaDyn1();
@@ -411,6 +419,8 @@ const om1Button = document.querySelector("#omega1");
 om1Button!.addEventListener("click", (event) => {
     validationFunction = validateOmega1;
     start = Date.now();
+    let r = document.getElementById("results");
+    r.textContent = "";
     clearAllMarks();
     clearDebuffs();
     assignOmega1Dyn();
@@ -422,6 +432,8 @@ const om2Button = document.querySelector("#omega2");
 om2Button!.addEventListener("click", (event) => {
     validationFunction = validateOmega2;
     start = Date.now();
+    let r = document.getElementById("results");
+    r.textContent = "";
     clearAllMarks();
     clearDebuffs();
     assignOmega2Debuffs();
