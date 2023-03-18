@@ -218,7 +218,118 @@ function hasClassName(els, name) {
     return false;
 }
 
-function markNextAttack(p: string) {
+function validateSigma() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(attacks[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("near") || debuffs[j].classList.contains("distant")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(binds[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("near") || debuffs[j].classList.contains("distant")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn1")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    return true;
+}
+
+function validateOmega1() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(attacks[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(binds[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    return true;
+}
+
+function validateOmega2() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(attacks[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(binds[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn3")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    return true;
+}
+
+function markNextAttack(p: string, validate) {
     clearMark(p);
     for (var i = 1; i < attacks.length; i++) {
         if (attacks[i] === "") {
@@ -227,12 +338,18 @@ function markNextAttack(p: string) {
             newMark.classList.add("mark", "attack" + i);
             let icons = document.getElementById(p)!.getElementsByClassName("icon_container");
             Array.prototype.forEach.call(icons, (icon) => icon.appendChild(newMark));
-            break;
+            if (validate != null) {
+                let result = validate.call();
+                if (result) {
+                    console.log(end - start + "ms");
+                }
+            }
+            return;
         }
     }
 }
 
-function markNextBind(p) {
+function markNextBind(p, validate) {
     clearMark(p);
     for (var i = 1; i < binds.length; i++) {
         if (binds[i] === "") {
@@ -241,7 +358,13 @@ function markNextBind(p) {
             newMark.classList.add("mark", "bind" + i);
             let icons = document.getElementById(p)!.getElementsByClassName("icon_container");
             Array.prototype.forEach.call(icons, (icon) => icon.appendChild(newMark));
-            break;
+            if (validate != null) {
+                let result = validate.call();
+                if (result) {
+                    console.log(end - start + "ms");
+                }
+            }
+            return;
         }
     }
 }
@@ -250,6 +373,8 @@ var moParty = 1;
 var attacks = ["", "", "", "", "", "", "", "", ""];
 var binds = ["", "", "", "", "", "", "", "", ""];
 
+var validationFunction, start, end;
+
 for (var i = 1; i < 9; i++) {
     let j = i;
     document.getElementById("party" + j)!.addEventListener("mouseover", (event) => { moParty = j; });
@@ -257,14 +382,16 @@ for (var i = 1; i < 9; i++) {
 
 window.addEventListener("keydown", (event) => {
     if (event.code === "F1" || event.code === "Digit1") {
-        markNextAttack("party" + moParty);
+        markNextAttack("party" + moParty, validationFunction);
     } else if (event.code === "F2" || event.code === "Digit2") {
-        markNextBind("party" + moParty);
+        markNextBind("party" + moParty, validationFunction);
     }
 });
 
 const sigButton = document.querySelector("#sigma");
 sigButton!.addEventListener("click", (event) => {
+    validationFunction = validateSigma;
+    start = Date.now();
     clearAllMarks();
     clearDebuffs();
     assignSigmaDyn1();
@@ -274,6 +401,8 @@ sigButton!.addEventListener("click", (event) => {
 
 const om1Button = document.querySelector("#omega1");
 om1Button!.addEventListener("click", (event) => {
+    validationFunction = validateOmega1;
+    start = Date.now();
     clearAllMarks();
     clearDebuffs();
     assignOmega1Dyn();
@@ -283,6 +412,8 @@ om1Button!.addEventListener("click", (event) => {
 
 const om2Button = document.querySelector("#omega2");
 om2Button!.addEventListener("click", (event) => {
+    validationFunction = validateOmega2;
+    start = Date.now();
     clearAllMarks();
     clearDebuffs();
     assignOmega2Debuffs();

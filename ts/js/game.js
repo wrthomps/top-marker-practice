@@ -228,7 +228,115 @@ function hasClassName(els, name) {
     }
     return false;
 }
-function markNextAttack(p) {
+function validateSigma() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(attacks[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("near") || debuffs[j].classList.contains("distant")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(binds[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("near") || debuffs[j].classList.contains("distant")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn1")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    return true;
+}
+function validateOmega1() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(attacks[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(binds[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    return true;
+}
+function validateOmega2() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(attacks[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(binds[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn3")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    return true;
+}
+function markNextAttack(p, validate) {
     clearMark(p);
     var _loop_2 = function () {
         if (attacks[i] === "") {
@@ -237,16 +345,22 @@ function markNextAttack(p) {
             newMark_1.classList.add("mark", "attack" + i);
             var icons = document.getElementById(p).getElementsByClassName("icon_container");
             Array.prototype.forEach.call(icons, function (icon) { return icon.appendChild(newMark_1); });
-            return "break";
+            if (validate != null) {
+                var result = validate.call();
+                if (result) {
+                    console.log(end - start + "ms");
+                }
+            }
+            return { value: void 0 };
         }
     };
     for (var i = 1; i < attacks.length; i++) {
         var state_1 = _loop_2();
-        if (state_1 === "break")
-            break;
+        if (typeof state_1 === "object")
+            return state_1.value;
     }
 }
-function markNextBind(p) {
+function markNextBind(p, validate) {
     clearMark(p);
     var _loop_3 = function () {
         if (binds[i] === "") {
@@ -255,18 +369,25 @@ function markNextBind(p) {
             newMark_2.classList.add("mark", "bind" + i);
             var icons = document.getElementById(p).getElementsByClassName("icon_container");
             Array.prototype.forEach.call(icons, function (icon) { return icon.appendChild(newMark_2); });
-            return "break";
+            if (validate != null) {
+                var result = validate.call();
+                if (result) {
+                    console.log(end - start + "ms");
+                }
+            }
+            return { value: void 0 };
         }
     };
     for (var i = 1; i < binds.length; i++) {
         var state_2 = _loop_3();
-        if (state_2 === "break")
-            break;
+        if (typeof state_2 === "object")
+            return state_2.value;
     }
 }
 var moParty = 1;
 var attacks = ["", "", "", "", "", "", "", "", ""];
 var binds = ["", "", "", "", "", "", "", "", ""];
+var validationFunction, start, end;
 var _loop_1 = function () {
     var j = i;
     document.getElementById("party" + j).addEventListener("mouseover", function (event) { moParty = j; });
@@ -276,14 +397,16 @@ for (var i = 1; i < 9; i++) {
 }
 window.addEventListener("keydown", function (event) {
     if (event.code === "F1" || event.code === "Digit1") {
-        markNextAttack("party" + moParty);
+        markNextAttack("party" + moParty, validationFunction);
     }
     else if (event.code === "F2" || event.code === "Digit2") {
-        markNextBind("party" + moParty);
+        markNextBind("party" + moParty, validationFunction);
     }
 });
 var sigButton = document.querySelector("#sigma");
 sigButton.addEventListener("click", function (event) {
+    validationFunction = validateSigma;
+    start = Date.now();
     clearAllMarks();
     clearDebuffs();
     assignSigmaDyn1();
@@ -292,6 +415,8 @@ sigButton.addEventListener("click", function (event) {
 });
 var om1Button = document.querySelector("#omega1");
 om1Button.addEventListener("click", function (event) {
+    validationFunction = validateOmega1;
+    start = Date.now();
     clearAllMarks();
     clearDebuffs();
     assignOmega1Dyn();
@@ -300,6 +425,8 @@ om1Button.addEventListener("click", function (event) {
 });
 var om2Button = document.querySelector("#omega2");
 om2Button.addEventListener("click", function (event) {
+    validationFunction = validateOmega2;
+    start = Date.now();
     clearAllMarks();
     clearDebuffs();
     assignOmega2Debuffs();
