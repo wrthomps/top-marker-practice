@@ -62,6 +62,15 @@ function assignSigmaDyn1() {
         }
     });
 }
+function assignSigmaGlitch() {
+    var glitch = ["mid", "remote"][Math.floor(Math.random() * 2)];
+    for (var i = 1; i < 9; i++) {
+        var g = document.createElement("div");
+        g.classList.add("debuff", glitch);
+        var p = document.getElementById("party" + i);
+        p.appendChild(g);
+    }
+}
 function assignOmega1Dyn() {
     var shuffle = permuteParty();
     var j = 1;
@@ -568,6 +577,7 @@ sigButton.addEventListener("click", function (event) {
     clearDebuffs();
     assignSigmaDyn1();
     assignSigmaHelloWorld();
+    assignSigmaGlitch();
     fillRandomBuffs();
 });
 var om1Button = document.querySelector("#omega1");

@@ -69,6 +69,16 @@ function assignSigmaDyn1(): void {
     });
 }
 
+function assignSigmaGlitch(): void {
+    var glitch = ["mid", "remote"][Math.floor(Math.random() * 2)];
+    for (var i = 1; i < 9; i++) {
+        let g = document.createElement("div");
+        g.classList.add("debuff", glitch);
+        let p = document.getElementById("party" + i);
+        p.appendChild(g);
+    }
+}
+
 function assignOmega1Dyn(): void {
     let shuffle = permuteParty();
     var j = 1;
@@ -558,6 +568,7 @@ sigButton!.addEventListener("click", (event) => {
     clearDebuffs();
     assignSigmaDyn1();
     assignSigmaHelloWorld();
+    assignSigmaGlitch();
     fillRandomBuffs();
 });
 

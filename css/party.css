@@ -111,6 +111,8 @@
     align-self: center;
 }
 
+/* Fight buffs/debuffs */
+
 .near {
     content: url("https://xivapi.com/i/015000/015141_hr1.png");
 }
@@ -137,6 +139,14 @@
 
 .dyn3 {
     content: url("https://xivapi.com/i/019000/019659_hr1.png");
+}
+
+.mid {
+    content: url("https://xivapi.com/i/015000/015129_hr1.png");
+}
+
+.remote {
+    content: url("https://xivapi.com/i/015000/015130_hr1.png");
 }
 
 /* Group buffs */
