@@ -292,33 +292,37 @@ function validateSigmaComplex() {
     return true;
 }
 function validateOmega1Simple() {
-    for (var i = 1; i < 3; i++) {
-        if (binds[i] === "") {
-            return false;
-        }
-        var p = document.getElementById(binds[i]);
+    var dyn2seconds = [];
+    for (var i = 1; i < 9; i++) {
+        var p = document.getElementById("party" + i);
         var debuffs = p.getElementsByClassName("debuff");
-        var foundDyn = false;
+        var second = false;
+        var dyn2 = false;
         for (var j = 0; j < debuffs.length; j++) {
-            if (debuffs[j].classList.contains("first")) {
-                return false;
+            if (debuffs[j].classList.contains("second")) {
+                second = true;
             }
             if (debuffs[j].classList.contains("dyn2")) {
-                foundDyn = true;
+                dyn2 = true;
             }
         }
-        if (!foundDyn) {
-            return false;
+        if (second && dyn2) {
+            dyn2seconds.push("party" + i);
         }
     }
-    validationFunction = null;
-    end = Date.now();
-    var r = document.getElementById("results");
-    r.textContent = ((end - start) / 1000) + "s";
-    return true;
-}
-function validateOmega1Complex() {
-    for (var i = 1; i < 5; i++) {
+    for (var i = 0; i < dyn2seconds.length; i++) {
+        var p = document.getElementById(dyn2seconds[i]);
+        var marks = p.getElementsByClassName("mark");
+        if (!marks || marks.length == 0) {
+            return false;
+        }
+        for (var j = 0; j < marks.length; j++) {
+            if (!marks[j].classList.contains("bind1") && !marks[j].classList.contains("bind2")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
         if (attacks[i] === "") {
             return false;
         }
@@ -355,7 +359,71 @@ function validateOmega1Complex() {
     r.textContent = ((end - start) / 1000) + "s";
     return true;
 }
+function validateOmega1Complex() {
+    for (var i = 1; i < 5; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(attacks[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var second = false;
+        var dyn2 = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("second")) {
+                second = true;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
+                dyn2 = true;
+            }
+        }
+        if (second && dyn2) {
+            return false;
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (binds[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(binds[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        var foundDyn = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn1")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
+                foundDyn = true;
+            }
+        }
+        if (!foundDyn) {
+            return false;
+        }
+    }
+    validationFunction = null;
+    end = Date.now();
+    var r = document.getElementById("results");
+    r.textContent = ((end - start) / 1000) + "s";
+    return true;
+}
 function validateOmega2Simple() {
+    for (var i = 1; i < 3; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        var p = document.getElementById(attacks[i]);
+        var debuffs = p.getElementsByClassName("debuff");
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second") || debuffs[j].classList.contains("dyn3")) {
+                return false;
+            }
+        }
+    }
     for (var i = 1; i < 3; i++) {
         if (binds[i] === "") {
             return false;

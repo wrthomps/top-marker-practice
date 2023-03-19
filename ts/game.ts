@@ -284,6 +284,49 @@ function validateSigmaComplex() {
 }
 
 function validateOmega1Simple() {
+    var dyn2seconds = [];
+    for (var i = 1; i < 9; i++) {
+        let p = document.getElementById("party" + i);
+        let debuffs = p.getElementsByClassName("debuff");
+        var second = false;
+        var dyn2 = false;
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second")) {
+                second = true;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
+                dyn2 = true;
+            }
+        }
+        if (second && dyn2) {
+            dyn2seconds.push("party" + i);
+        }
+    }
+    for (var i = 0; i < dyn2seconds.length; i++) {
+        let p = document.getElementById(dyn2seconds[i]);
+        let marks = p.getElementsByClassName("mark");
+        if (!marks || marks.length == 0) {
+            return false;
+        }
+        for (var j = 0; j < marks.length; j++) {
+            if (!marks[j].classList.contains("bind1") && !marks[j].classList.contains("bind2")) {
+                return false;
+            }
+        }
+    }
+    for (var i = 1; i < 3; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(attacks[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+        }
+    }
     for (var i = 1; i < 3; i++) {
         if (binds[i] === "") {
             return false;
@@ -317,10 +360,22 @@ function validateOmega1Complex() {
         }
         let p = document.getElementById(attacks[i]);
         let debuffs = p.getElementsByClassName("debuff");
+        var second = false;
+        var dyn2 = false;
+
         for (var j = 0; j < debuffs.length; j++) {
             if (debuffs[j].classList.contains("first")) {
                 return false;
             }
+            if (debuffs[j].classList.contains("second")) {
+                second = true;
+            }
+            if (debuffs[j].classList.contains("dyn2")) {
+                dyn2 = true;
+            }
+        }
+        if (second && dyn2) {
+            return false;
         }
     }
     for (var i = 1; i < 3; i++) {
@@ -332,6 +387,9 @@ function validateOmega1Complex() {
         var foundDyn = false;
         for (var j = 0; j < debuffs.length; j++) {
             if (debuffs[j].classList.contains("first")) {
+                return false;
+            }
+            if (debuffs[j].classList.contains("dyn1")) {
                 return false;
             }
             if (debuffs[j].classList.contains("dyn2")) {
@@ -350,6 +408,19 @@ function validateOmega1Complex() {
 }
 
 function validateOmega2Simple() {
+    for (var i = 1; i < 3; i++) {
+        if (attacks[i] === "") {
+            return false;
+        }
+        let p = document.getElementById(attacks[i]);
+        let debuffs = p.getElementsByClassName("debuff");
+
+        for (var j = 0; j < debuffs.length; j++) {
+            if (debuffs[j].classList.contains("second") || debuffs[j].classList.contains("dyn3")) {
+                return false;
+            }
+        }
+    }
     for (var i = 1; i < 3; i++) {
         if (binds[i] === "") {
             return false;
